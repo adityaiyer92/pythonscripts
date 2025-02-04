@@ -4,6 +4,12 @@ import random
 # Let's Viusalize the Images
 
 def view_random_iamge(dataset_name, target_dir, target_class):
+  """
+  Displays a random image from the dataset's target directory and class combination.
+  dataset_name: Name of the dataset
+  target_dir: train or test
+  target_class: class name
+  """
   # Setup the target directory
   target_folder = dataset_name + "/" + target_dir + "/" + target_class
 
