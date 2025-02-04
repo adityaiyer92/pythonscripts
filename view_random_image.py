@@ -1,10 +1,10 @@
- """
- Aditya Iyer
-  Displays a random image from the dataset's target directory and class combination.
-  dataset_name: Name of the dataset
-  target_dir: train or test
-  target_class: class name
-  """
+"""
+Aditya Iyer
+Displays a random image from the dataset's target directory and class combination.
+dataset_name: Name of the dataset
+target_dir: train or test
+target_class: class name
+"""
 import matplotlib.image as mpimg
 import random
 import os
