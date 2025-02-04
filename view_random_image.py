@@ -5,6 +5,7 @@ dataset_name: Name of the dataset
 target_dir: train or test
 target_class: class name
 """
+import matplotlib.pyplot as plt
 import matplotlib.image as mpimg
 import random
 import os
