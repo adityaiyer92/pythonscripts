@@ -1,6 +1,6 @@
 '''
 Aditya Iyer
-Plot the training and testing loss curves and accuracy curves separately.
+Plot the training and testing loss curves and accuracy curves separately using subplot.
 '''
 import matplotlib.pyplot as plt
 
