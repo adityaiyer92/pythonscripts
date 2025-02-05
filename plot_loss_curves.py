@@ -2,6 +2,8 @@
 Aditya Iyer
 Plot the training and testing loss curves and accuracy curves separately.
 '''
+import matplotlib.pyplot as plt
+
 def plot_loss_curves(history):
   """
   Returns separate Loss Curves for the Training and Validation/Test datasets
