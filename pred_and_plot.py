@@ -6,7 +6,7 @@ import tensorflow as tf
 import matpltolib.pyplot as plt
 from load_and_prep_image import load_and_prep_image
 
-def pred_and_plot(model, filename, class_names= class_names):
+def pred_and_plot(model, filename, class_names):
   """
   Imports an image located at filename, makes a prediction with model and plots
   an image with predicted class with title.
