@@ -3,7 +3,7 @@ Aditya Iyer
 """
 
 import tensorflow as tf
-import matpltlib.pyplot as plt
+import matpltolib.pyplot as plt
 from load_and_prep_image import load_and_prep_image
 
 def pred_and_plot(model, filename, class_names= class_names):
