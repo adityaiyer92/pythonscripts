@@ -150,3 +150,44 @@ def pred_and_plot(model, img, class_names):
     plt.axis('off')
     plt.title(f'Prediction: {pred_class}')
     plt.show()
+
+# Function to compare history objects in fine tuning
+def compare_history(original_history, new_history, initial_epochs):
+  """
+  Compares two Tensorflow History objects and plots them.
+  :params:
+  original_hostory(obj): The history object from initial training
+  new_history(obj): The history object from fine tuning
+  initial_epochs(int): Number of inital epochs
+  Returns:
+  None
+  """
+  # Get original history
+  acc = original_history.history["accuracy"]
+  loss = original_history.history["loss"]
+
+  val_acc = original_history.history["val_accuracy"]
+  val_loss = original_history.history["val_loss"]
+
+  # Combine measurements
+  total_acc = acc + new_history.history["accuracy"]
+  total_loss = loss + new_history.history["loss"]
+
+  total_val_acc = val_acc + new_history.history["val_accuracy"]
+  total_val_loss = val_loss + new_history.history["val_loss"]
+
+  # Make plots
+  plt.figure(figsize= (10, 10))
+  plt.subplot(2, 1, 1)
+  plt.plot(total_acc, label= "Training Accuracy")
+  plt.plot(total_val_acc, label= "Validation Accuracy")
+  plt.plot([initial_epochs - 1, initial_epochs - 1], plt.ylim(), label= "Start Fine Tuning")
+  plt.legend(loc= "lower right")
+  plt.title("Training and Validation Accuracy");
+
+  plt.subplot(2, 1, 2)
+  plt.plot(total_loss, label= "Training Loss")
+  plt.plot(total_val_loss, label= "Validation Loss")
+  plt.plot([initial_epochs - 1, initial_epochs - 1], plt.ylim(), label= "Start Fine Tuning")
+  plt.legend(loc= "lower right")
+  plt.title("Training and Validation Loss");
