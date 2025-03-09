@@ -27,7 +27,7 @@ def get_class_names(directory):
     :param directory: Path to the directory.
     returns: List of class names.
     """
-    return os.listdir(directory)
+    return np.array(sorted(os.listdir(directory)))
 
 # Function to display a random image from a directory
 def display_random_image(directory, class_names):
