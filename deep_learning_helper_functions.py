@@ -191,3 +191,36 @@ def compare_history(original_history, new_history, initial_epochs):
   plt.plot([initial_epochs - 1, initial_epochs - 1], plt.ylim(), label= "Start Fine Tuning")
   plt.legend(loc= "lower right")
   plt.title("Training and Validation Loss");
+
+# Function to make predictions for EfficientNet model
+def process_predict_plot_efficientnet(model, filename, class_names, img_shape= 224):
+  """
+  Reads image, processes it, makes prediction and plots image.
+  :param:
+  model(obj): CNN model to use
+  filename(str): Name of image file
+  class_names(array): Array of class names
+  image_shape(int): Integer value of dimension
+
+  Returns:
+  None
+  """
+  # Read in the image
+  img = tf.io.read_file(filename)
+
+  # Decode the read file into a tensor
+  img = tf.image.decode_image(img)
+
+  # Resize image
+  img = tf.image.resize(img, size= [img_shape, img_shape])
+
+  # Make prediction
+  pred = model.predict(tf.expand_dims(img, axis= 0))
+
+  # Get the predicted class
+  pred_class = class_names[int(tf.argmax(pred, axis= 1))]
+
+  # Plot the image with Predicted class
+  plt.imshow(img/255.)
+  plt.title(f"Prediction: {pred_class}")
+  plt.axis(False);
