@@ -229,7 +229,26 @@ def process_predict_plot(model, filename, class_names, img_shape= 224, scale= Tr
     # Get the predicted class
     pred_class = class_names[int(tf.argmax(pred, axis= 1))]
 
-    # Plot the image with Predicted class
-    plt.imshow(img/255.)
-    plt.title(f"Prediction: {pred_class}")
-    plt.axis(False);
+# Function to preprocess dataset images
+def preprocess_images(image, label, img_shape= 224, rescale= False):
+    """
+    Reads in image and label, converts the dtype to float32 and reshapes the image
+    to [image_shape, image_shape, color_channels]
+    :param:
+        image (tensor): The input image
+        label (int): Input label
+        image_shape (int): Desired shape of image
+        rescale (bool): Flag to rescale image or not
+
+    Returns:
+        Tuple of image, label
+    """
+    # Resize image
+    image = tf.image.resize(image, [img_shape, img_shape])
+
+    # Check if rescaling reqiired
+    if rescale:
+        image = image / 255.
+    else:
+        pass
+    return tf.cast(image, tf.float32), label
