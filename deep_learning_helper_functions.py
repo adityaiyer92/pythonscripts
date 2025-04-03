@@ -252,3 +252,57 @@ def preprocess_images(image, label, img_shape= 224, rescale= False):
     else:
         pass
     return tf.cast(image, tf.float32), label
+
+# Function to preprocess text data
+# Create function to turn our data into the above format
+def preprocess_text_with_line_num(filename):
+  """
+  Generates list of dictionaries of an abstract's line data.
+  :params:
+    filename(str): Name of file we need to process
+  Returns:
+    List of dictionaries.
+  """
+    # Get all lines from the file
+    with open(filename, 'r') as f:
+        input_lines = f.readlines()
+
+    #Empty abstract
+    abstract_lines = ""
+
+    # Empty list of abstracts
+    abstract_samples = []
+
+    # Loop through each line of file
+    for line in input_lines:
+        # Check to see if line is id line
+        if line.startswith("###"):
+            abstract_id = line
+            # Reset abstract if line is id line
+            abstract_lines = ""
+
+        # Check for new line (\n in the abstract will be treated as empty space)
+        elif line.isspace():
+            # Split abstract into separate lines
+            abstract_line_split = abstract_lines.splitlines()
+
+            # Iterate tbrough each line in a single file and count them
+            for abstract_line_num, abstract_line in enumerate(abstract_line_split):
+                line_data = {}
+                target_text_split = abstract_line.split("\t")
+                # Get target label
+                line_data["target"] = target_text_split[0]
+                # Get target text
+                line_data["text"] = target_text_split[1].lower()
+                # Get line number
+                line_data["line_number"] = abstract_line_num
+                # Get total lines
+                line_data["total_lines"] = len(abstract_line_split) - 1
+                # Append to dict
+                abstract_samples.append(line_data)
+
+        else:
+            # If the line isn't id line, or new line, it contains labelled sentence
+            abstract_lines += line
+
+    return abstract_samples
