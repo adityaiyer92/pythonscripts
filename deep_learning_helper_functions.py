@@ -319,19 +319,19 @@ def get_classification_metrics(y_preds, y_true):
     Dictionary containing accuracy, precision, recall, f1
   """
   # Print out the accuracy score
-  acc_score = accuracy_score(y_preds, y_true)
+  acc_score = accuracy_score(y_preds, y_true, , average= "macro")
   print(f"The accuracy score is {acc_score:.2f}\n")
 
   # Print out the precision score
-  prec_score = precision_score(y_preds, y_true)
+  prec_score = precision_score(y_preds, y_true, average= "macro")
   print(f"The precision score is {prec_score:.2f}\n")
 
   # Print out the recall score
-  rec_score = recall_score(y_preds, y_true)
+  rec_score = recall_score(y_preds, y_true, average= "macro")
   print(f"The recall score is {rec_score:.2f}\n")
 
   # Print out the F1 score
-  f_score = f1_score(y_preds, y_true)
+  f_score = f1_score(y_preds, y_true, average= "macro")
   print(f"The F1 score is {f_score:.2f}\n")
 
   # Plot Confusion Matrix
