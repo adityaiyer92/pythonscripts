@@ -323,15 +323,15 @@ def get_classification_metrics(y_preds, y_true):
   print(f"The accuracy score is {acc_score:.2f}\n")
 
   # Print out the precision score
-  prec_score = precision_score(y_preds, y_true, average= "macro")
+  prec_score = precision_score(y_preds, y_true, average= "weighted")
   print(f"The precision score is {prec_score:.2f}\n")
 
   # Print out the recall score
-  rec_score = recall_score(y_preds, y_true, average= "macro")
+  rec_score = recall_score(y_preds, y_true, average= "weighted")
   print(f"The recall score is {rec_score:.2f}\n")
 
   # Print out the F1 score
-  f_score = f1_score(y_preds, y_true, average= "macro")
+  f_score = f1_score(y_preds, y_true, average= "weighted")
   print(f"The F1 score is {f_score:.2f}\n")
 
   # Plot Confusion Matrix
