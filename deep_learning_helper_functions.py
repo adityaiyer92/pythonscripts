@@ -319,7 +319,7 @@ def get_classification_metrics(y_preds, y_true):
     Dictionary containing accuracy, precision, recall, f1
   """
   # Print out the accuracy score
-  acc_score = accuracy_score(y_preds, y_true, , average= "macro")
+  acc_score = accuracy_score(y_preds, y_true)
   print(f"The accuracy score is {acc_score:.2f}\n")
 
   # Print out the precision score
