@@ -8,6 +8,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 import os
 import zipfile
+from sklearn.metrics import accuracy_score, precision_score, recall_score, f1_score, ConfusionMatrixDisplay
 
 # Function to extract contents of a zip file
 def extract_zip(zip_path):
@@ -305,3 +306,36 @@ def preprocess_text_with_line_num(filename):
       abstract_lines += line
 
   return abstract_samples
+
+# Function to get and display classification metrics
+def get_classification_metrics(y_preds, y_true):
+  """
+  This function displays the evaluation metrics for classification problem.
+  :params:
+    y_preds (array): Array containing model predictions
+    y_true (array): Array containing ground truth labels
+
+  Returns:
+    Dictionary containing accuracy, precision, recall, f1
+  """
+  # Print out the accuracy score
+  acc_score = accuracy_score(y_preds, y_true)
+  print(f"The accuracy score is {acc_score:.2f}\n")
+
+  # Print out the precision score
+  prec_score = precision_score(y_preds, y_true)
+  print(f"The precision score is {prec_score:.2f}\n")
+
+  # Print out the recall score
+  rec_score = recall_score(y_preds, y_true)
+  print(f"The recall score is {rec_score:.2f}\n")
+
+  # Print out the F1 score
+  f_score = f1_score(y_preds, y_true)
+  print(f"The F1 score is {f_score:.2f}\n")
+
+  # Plot Confusion Matrix
+  ConfusionMatrixDisplay.from_predictions(y_preds, y_true)
+  plt.tight_layout();
+
+  return {"accuracy_score": acc_score, "precision_score": prec_score, "recall_score": rec_score, "f1_score": f_score}
